@@ -1,0 +1,61 @@
+<main>
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    [ngStyle]="{ 'width': width }">
+    <!-- Title Input -->
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        formControlName="title"
+        placeholder="Enter title"
+        required />
+      <mat-error *ngIf="form.controls.title.hasError('required')">
+        Title is required
+      </mat-error>
+      <mat-error *ngIf="form.controls.title.hasError('minlength')">
+        Must be at least 3 characters
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Description Input -->
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Enter a description"></textarea>
+    </mat-form-field>
+
+    <!-- Date Input -->
+    <mat-form-field>
+      <mat-label>Due Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="dueDate"
+        formControlName="dueDate"
+        placeholder="Select a date"
+        required />
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="dueDate"></mat-datepicker-toggle>
+      <mat-datepicker #dueDate></mat-datepicker>
+      <mat-error *ngIf="form.controls.dueDate.hasError('required')">
+        Date is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="isCompleted" name="isCompleted">
+      Is Completed?
+    </mat-checkbox>
+
+    <button mat-fab extended type="submit" [disabled]="isLoading">
+      <span *ngIf="isLoading">
+        <mat-spinner diameter="20"></mat-spinner>
+      </span>
+      <span *ngIf="!isLoading">Save</span>
+    </button>
+  </form>
+</main>

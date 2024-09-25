@@ -1,0 +1,38 @@
+<main>
+  <mat-form-field>
+    <mat-label>Search task</mat-label>
+    <input matInput placeholder="Task" [(ngModel)]="searchFilter" (input)="filterTasks()">
+  </mat-form-field>
+
+  <mat-grid-list [cols]="cols" rowHeight="150px" *ngIf="tasks">
+    <mat-grid-tile *ngFor="let task of filteredTasks">
+      <mat-card class="task-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{ task.title }}
+          </mat-card-title>
+          <button mat-icon-button (click)="openDeleteDialog(task)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-actions>
+          <a
+            mat-raised-button
+            color="accent"
+            [routerLink]="['/details', task.taskId]">
+            Details
+          </a>
+          <button
+            mat-raised-button
+            color="accent"
+            [routerLink]="['/form']"
+            [queryParams]="{ id: task.taskId }">
+            Edit
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-spinner diameter="20" *ngIf="!tasks"></mat-spinner>
+</main>

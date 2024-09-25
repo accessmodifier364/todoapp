@@ -1,0 +1,55 @@
+<main>
+  <h1>Register</h1>
+  <mat-error *ngIf="error$ | async">
+    {{ (error$ | async).status == 409 ? 'Username already exists' : '' }}
+  </mat-error>
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    [ngStyle]="{ 'width': width }">
+    <!-- Username Input -->
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        formControlName="username"
+        placeholder="Enter your username"
+        required />
+      <mat-error *ngIf="form.controls.username.hasError('required')">
+        Username is required
+      </mat-error>
+      <mat-error *ngIf="form.controls.username.hasError('minlength')">
+        Must be at least 3 characters
+      </mat-error>
+      <mat-error *ngIf="form.controls.username.hasError('maxlength')">
+        Must be at most 16 characters
+      </mat-error>
+      <mat-error *ngIf="form.controls.username.hasError('pattern')">
+        Must be alphanumeric
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Password Input -->
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        formControlName="password"
+        placeholder="Enter your password"
+        required />
+      <mat-error *ngIf="form.controls.password.hasError('required')">
+        Password is required
+      </mat-error>
+      <mat-error *ngIf="form.controls.password.hasError('minlength')">
+        Must be at least 6 characters
+      </mat-error>
+      <mat-error *ngIf="form.controls.password.hasError('maxlength')">
+        Must be at most 32 characters
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-fab extended type="submit">
+      Register
+    </button>
+  </form>
+</main>

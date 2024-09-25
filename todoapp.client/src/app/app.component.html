@@ -1,0 +1,18 @@
+<mat-toolbar>
+  <a href="/" class="logo">
+    <span>Todo App</span>
+  </a>
+  <div class="actions">
+    <button mat-stroked-button *ngIf="loggedIn$ | async" (click)="logOut()">
+      Log out
+    </button>
+    <button mat-fab extended [routerLink]="['/form']">
+      <mat-icon>add</mat-icon>
+      <span>New Task</span>
+    </button>
+  </div>
+</mat-toolbar>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

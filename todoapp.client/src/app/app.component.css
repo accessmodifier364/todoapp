@@ -1,0 +1,20 @@
+mat-toolbar {
+  justify-content: space-between;
+}
+
+.content {
+  padding: 16px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

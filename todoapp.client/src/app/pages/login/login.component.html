@@ -1,0 +1,43 @@
+<main>
+  <h1>Login</h1>
+  <mat-error *ngIf="error$ | async">
+    {{ (error$ | async).status == 401 ? 'Invalid credentials' : '' }}
+  </mat-error>
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="form"
+    [ngStyle]="{ 'width': width }">
+    <!-- Username Input -->
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        formControlName="username"
+        placeholder="Enter your username"
+        required />
+      <mat-error *ngIf="form.controls.username.hasError('required')">
+        Username is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Password Input -->
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        formControlName="password"
+        placeholder="Enter your password"
+        required />
+      <mat-error *ngIf="form.controls.password.hasError('required')">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+
+    <span>Don't have an account? <a [routerLink]="['/register']">Register</a>
+      instead</span>
+
+    <button mat-fab extended type="submit">
+      Login
+    </button>
+  </form>
+</main>

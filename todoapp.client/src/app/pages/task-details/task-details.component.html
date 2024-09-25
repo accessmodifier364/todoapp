@@ -1,0 +1,21 @@
+<main class="content">
+  <mat-card [ngStyle]="{ 'width': width }" *ngIf="task">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>{{ task.title }}</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <h2>Description</h2>
+      <span>{{ task.description }}</span>
+      <h2>Due Date</h2>
+      <span>{{ date | date: 'fullDate' }}</span>
+      <h2>Is Completed?</h2>
+      <span>{{ task.isCompleted ? "Yes" : "No" }}</span>
+      <div class="actions"><a mat-fab extended [routerLink]="['/']">Go
+          back</a></div>
+    </mat-card-content>
+  </mat-card>
+  <mat-spinner diameter="20" *ngIf="!task"></mat-spinner>
+</main>
