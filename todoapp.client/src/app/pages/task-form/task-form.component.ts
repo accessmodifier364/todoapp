@@ -83,7 +83,7 @@ export class TaskFormComponent implements OnInit {
 
     if (this.taskId) {
       this.api
-        .updateTask({ formData, taskId: parseInt(this.taskId) })
+        .updateTask({ ...formData, taskId: parseInt(this.taskId) })
         .subscribe({
           complete: () => {
             this.router.navigate(['/']);
