@@ -34,3 +34,5 @@ Accessing this URL in your browser will start running the SPA proxy. You will ge
 ---
 
 To reset the database, simply stop running the application and delete the database file located at `TodoApp.Server/Backend.db`
+
+For security purposes, you should change the JWT encryption token located at ``./TodoApp.Server/appsettings.json`` with a randomly generated Base64 string with at least 32 characters.
